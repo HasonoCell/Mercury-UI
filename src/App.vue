@@ -1,5 +1,11 @@
 <script setup lang="ts">
+import { ref } from "vue";
 import Button from "./components/Button/Button.vue";
+import Collapse from "./components/Collapse/Collapse.vue";
+import CollapseItem from "./components/Collapse/CollapseItem.vue";
+import Icon from "./components/Icon/Icon.vue";
+
+const collapseOpenedVal = ref(["a"]);
 </script>
 
 <template>
@@ -30,6 +36,34 @@ import Button from "./components/Button/Button.vue";
       <Button type="danger" round> Danger </Button>
       <Button type="info" round> Info </Button>
     </div>
+
+    <div class="circle block">
+      <Button circle> <Icon icon="star" /> </Button>
+      <Button type="primary" circle> <Icon icon="star" /> </Button>
+      <Button type="success" circle> <Icon icon="star" /> </Button>
+      <Button type="warning" circle> <Icon icon="star" /> </Button>
+      <Button type="danger" circle> <Icon icon="star" /> </Button>
+      <Button type="info" circle> <Icon icon="star" /> </Button>
+      <Button loading> Loading </Button>
+    </div>
+  </div>
+
+  <div class="collapse">
+    <Collapse v-model="collapseOpenedVal">
+      <CollapseItem name="a">
+        <template #title>
+          <h1>nice title</h1>
+        </template>
+        <h1>headline title</h1>
+        <div>this is the content aaaa</div>
+      </CollapseItem>
+      <CollapseItem name="b" title="nice title on b">
+        <div>test content b b and b</div>
+      </CollapseItem>
+      <CollapseItem name="c" title="nice ccc" disabled>
+        <div>he is content in c</div>
+      </CollapseItem>
+    </Collapse>
   </div>
 </template>
 
