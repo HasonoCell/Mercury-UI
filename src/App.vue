@@ -4,6 +4,7 @@ import Button from "./components/Button/Button.vue";
 import Collapse from "./components/Collapse/Collapse.vue";
 import CollapseItem from "./components/Collapse/CollapseItem.vue";
 import Icon from "./components/Icon/Icon.vue";
+import Alert from "./components/Alert/Alert.vue";
 
 const collapseOpenedVal = ref(["a"]);
 </script>
@@ -45,6 +46,7 @@ const collapseOpenedVal = ref(["a"]);
       <Button type="danger" circle> <Icon icon="star" /> </Button>
       <Button type="info" circle> <Icon icon="star" /> </Button>
       <Button loading> Loading </Button>
+      <Button size="large" type="primary"> Large </Button>
     </div>
   </div>
 
@@ -52,18 +54,26 @@ const collapseOpenedVal = ref(["a"]);
     <Collapse v-model="collapseOpenedVal">
       <CollapseItem name="a">
         <template #title>
-          <h1>nice title</h1>
+          <h1>Consistency</h1>
         </template>
-        <h1>headline title</h1>
-        <div>this is the content aaaa</div>
+        <div>Consistent with real life: in line with the process and logic of real
+          life, and comply with languages and habits that the users are used to</div>
       </CollapseItem>
-      <CollapseItem name="b" title="nice title on b">
-        <div>test content b b and b</div>
+      <CollapseItem name="b" title="Feedback">
+        <div>Operation feedback: enable the users to clearly perceive their
+          operations by style updates and interactive effects</div>
       </CollapseItem>
-      <CollapseItem name="c" title="nice ccc" disabled>
+      <CollapseItem name="c" title="Efficiency" disabled>
         <div>he is content in c</div>
       </CollapseItem>
     </Collapse>
+  </div>
+
+  <div class="alert">
+    <Alert closable>Hello World</Alert>
+    <Alert closable type="warning">Hello World</Alert>
+    <Alert closable type="danger" effect="dark">Hello Dark</Alert>
+    <Alert closable type="success" effect="light">Hello Light</Alert>
   </div>
 </template>
 

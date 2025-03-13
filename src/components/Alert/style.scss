@@ -1,0 +1,48 @@
+.vk-alert {
+    --vk-alert-font-weight: var(--vk-font-weight-primary);
+    --vk-alert-bg-color: var(--vk-color-info-light-9);
+    --vk-alert-text-color: var(--vk-color-info);
+    --vk-alert-border-radius: var(--vk-border-radius-base);
+    --vk-alert-padding: 8px 16px;
+    --vk-alert-margin-top: 20px;
+}
+
+.vk-alert {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--vk-alert-bg-color);
+    padding: var(--vk-alert-padding);
+    margin-top: var(--vk-alert-margin-top);
+    color: var(--vk-alert-text-color);
+    border-radius: var(--vk-alert-border-radius);
+    position: relative;
+    box-sizing: border-box;
+    font-weight: var(--vk-alert-font-weight);
+
+    .vk-alert-icon {
+        cursor: pointer;
+    }
+}
+
+@each $type in (success, warning, info, danger) {
+    .vk-alert--#{$type} {
+        --vk-alert-bg-color: var(--vk-color-#{$type}-light-9);
+        --vk-alert-text-color: var(--vk-color-#{$type});
+
+        &.vk-alert--dark {
+            --vk-alert-bg-color: var(--vk-color-#{$type});
+            --vk-alert-text-color: var(--vk-color-white);
+        }
+    }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity var(--vk-transition-duration) ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
