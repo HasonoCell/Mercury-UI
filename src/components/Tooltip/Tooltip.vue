@@ -2,7 +2,7 @@
 import { ref, watch, reactive, onUnmounted, computed } from "vue";
 import type { TooltipEmits, TooltipProps, TooltipInstance } from "./types";
 import { createPopper, type Instance } from "@popperjs/core";
-import useClickOutside from '../../hooks/useClickOutside'
+import useClickOutside from "../../hooks/useClickOutside";
 import { debounce } from "lodash-es";
 
 const props = withDefaults(defineProps<TooltipProps>(), {
@@ -29,12 +29,12 @@ const popperOptions = computed(() => {
   return {
     placement: props.placement,
     modifiers: [
-        {
-            name: 'offset',
-            options: {
-                offset: [0, 9]
-            }
-        }
+      {
+        name: "offset",
+        options: {
+          offset: [0, 9],
+        },
+      },
     ],
     ...props.popperOptions,
   };
@@ -62,6 +62,7 @@ const closeDebounce = debounce(close, props.closeDelay);
 const closeFinal = () => {
   openDebounce.cancel();
   closeDebounce();
+  console.log("close");
 };
 
 const togglePopper = () => {
@@ -137,6 +138,10 @@ watch(
 defineExpose<TooltipInstance>({
   show: openFinal,
   hide: closeFinal,
+});
+
+defineOptions({
+  name: "VkTooltip",
 });
 
 onUnmounted(() => {

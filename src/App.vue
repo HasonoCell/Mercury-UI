@@ -1,13 +1,23 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, h } from "vue";
 import Button from "./components/Button/Button.vue";
 import Collapse from "./components/Collapse/Collapse.vue";
 import CollapseItem from "./components/Collapse/CollapseItem.vue";
 import Icon from "./components/Icon/Icon.vue";
 import Alert from "./components/Alert/Alert.vue";
 import Tooltip from "./components/Tooltip/Tooltip.vue";
+import Dropdown from "./components/Dropdown/Dropdown.vue";
+
+import type { MenuOptions } from "./components/Dropdown/types";
 
 const collapseOpenedVal = ref(["a"]);
+
+const menuOptions: MenuOptions[] = [
+  { key: 1, label: h("b", "this is the bold text") },
+  { key: 2, label: "item2", disabled: true },
+  { key: 3, label: "item3", divided: true },
+  { key: 4, label: "item4" },
+];
 </script>
 
 <template>
@@ -85,6 +95,18 @@ const collapseOpenedVal = ref(["a"]);
     <Tooltip content="Hello World" trigger="hover" ref="tRef" placement="right">
       <h1>Tigger</h1>
     </Tooltip>
+  </div>
+
+  <div class="dropdown block">
+    <Dropdown
+      content="Hello World"
+      trigger="hover"
+      ref="tRef"
+      placement="right"
+      :menu-options="menuOptions"
+    >
+      <h1>Tigger</h1>
+    </Dropdown>
   </div>
 </template>
 
