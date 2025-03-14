@@ -5,6 +5,7 @@ import Collapse from "./components/Collapse/Collapse.vue";
 import CollapseItem from "./components/Collapse/CollapseItem.vue";
 import Icon from "./components/Icon/Icon.vue";
 import Alert from "./components/Alert/Alert.vue";
+import Tooltip from "./components/Tooltip/Tooltip.vue";
 
 const collapseOpenedVal = ref(["a"]);
 </script>
@@ -56,12 +57,16 @@ const collapseOpenedVal = ref(["a"]);
         <template #title>
           <h1>Consistency</h1>
         </template>
-        <div>Consistent with real life: in line with the process and logic of real
-          life, and comply with languages and habits that the users are used to</div>
+        <div>
+          Consistent with real life: in line with the process and logic of real life, and comply
+          with languages and habits that the users are used to
+        </div>
       </CollapseItem>
       <CollapseItem name="b" title="Feedback">
-        <div>Operation feedback: enable the users to clearly perceive their
-          operations by style updates and interactive effects</div>
+        <div>
+          Operation feedback: enable the users to clearly perceive their operations by style updates
+          and interactive effects
+        </div>
       </CollapseItem>
       <CollapseItem name="c" title="Efficiency" disabled>
         <div>he is content in c</div>
@@ -74,6 +79,12 @@ const collapseOpenedVal = ref(["a"]);
     <Alert closable type="warning">Hello World</Alert>
     <Alert closable type="danger" effect="dark">Hello Dark</Alert>
     <Alert closable type="success" effect="light">Hello Light</Alert>
+  </div>
+
+  <div class="tooltip block">
+    <Tooltip content="Hello World" trigger="hover" ref="tRef" placement="right">
+      <h1>Tigger</h1>
+    </Tooltip>
   </div>
 </template>
 
