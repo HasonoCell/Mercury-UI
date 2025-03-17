@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, h } from "vue";
+import { ref, h, onMounted } from "vue";
 import Button from "./components/Button/Button.vue";
 import Collapse from "./components/Collapse/Collapse.vue";
 import CollapseItem from "./components/Collapse/CollapseItem.vue";
@@ -7,6 +7,7 @@ import Icon from "./components/Icon/Icon.vue";
 import Alert from "./components/Alert/Alert.vue";
 import Tooltip from "./components/Tooltip/Tooltip.vue";
 import Dropdown from "./components/Dropdown/Dropdown.vue";
+import { createMessage } from "./components/Message/method";
 
 import type { MenuOptions } from "./components/Dropdown/types";
 
@@ -18,6 +19,25 @@ const menuOptions: MenuOptions[] = [
   { key: 3, label: "item3", divided: true },
   { key: 4, label: "item4" },
 ];
+
+onMounted(() => {
+  createMessage({
+    message: h('b', 'this is the bold text'),
+    duration: 5000,
+    type: "success",
+  });
+
+  createMessage({
+    message: "Hello World Again",
+  });
+
+  createMessage({
+    message: "Hello World Final",
+    duration: 0,
+    type: "danger",
+    showClose: true,
+  });
+});
 </script>
 
 <template>
