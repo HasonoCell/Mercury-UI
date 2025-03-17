@@ -4,7 +4,7 @@ import RenderVnode from "../Common/RenderVnode";
 import Icon from "../Icon/Icon.vue";
 import { computed, onMounted, ref } from "vue";
 import { getLastBottomOffset } from "./method";
-import useEventListener from "@/hooks/useEventListener";
+import useEventListener from "../../hooks/useEventListener"
 
 const props = withDefaults(defineProps<MessageProps>(), {
   duration: 3000,
