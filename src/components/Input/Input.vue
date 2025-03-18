@@ -72,7 +72,7 @@ const togglePasswordVisible = () => {
 };
 
 // 占位函数，消除 blur 带来的影响
-const NOOP = () => {}
+const NOOP = () => {};
 
 watch(
   () => props.modelValue,
@@ -136,7 +136,13 @@ defineExpose({
           @click="keepFocus"
         >
           <slot name="suffix" />
-          <Icon icon="circle-xmark" v-if="showClear" class="vk-input__clear" @click="clear" @mousedown.prevent="NOOP" />
+          <Icon
+            icon="circle-xmark"
+            v-if="showClear"
+            class="vk-input__clear"
+            @click="clear"
+            @mousedown.prevent="NOOP"
+          />
           <Icon
             icon="eye"
             v-if="showPasswordArea && passwordVisible"
@@ -150,10 +156,10 @@ defineExpose({
             @click="togglePasswordVisible"
           />
         </span>
-        <!-- append slot -->
-        <div v-if="$slots.append" class="vk-input__append">
-          <slot name="append" />
-        </div>
+      </div>
+      <!-- append slot -->
+      <div v-if="$slots.append" class="vk-input__append">
+        <slot name="append" />
       </div>
     </template>
 

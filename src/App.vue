@@ -8,7 +8,6 @@ import Alert from "./components/Alert/Alert.vue";
 import Tooltip from "./components/Tooltip/Tooltip.vue";
 import Dropdown from "./components/Dropdown/Dropdown.vue";
 import { createMessage } from "./components/Message/method";
-
 import type { MenuOptions } from "./components/Dropdown/types";
 
 const collapseOpenedVal = ref(["a"]);
@@ -22,7 +21,7 @@ const menuOptions: MenuOptions[] = [
 
 onMounted(() => {
   createMessage({
-    message: h('b', 'this is the bold text'),
+    message: h("b", "this is the bold text"),
     duration: 5000,
     type: "success",
   });
