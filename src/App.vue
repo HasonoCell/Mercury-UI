@@ -9,8 +9,11 @@ import Tooltip from "./components/Tooltip/Tooltip.vue";
 import Dropdown from "./components/Dropdown/Dropdown.vue";
 import { createMessage } from "./components/Message/method";
 import type { MenuOptions } from "./components/Dropdown/types";
+import Switch from "./components/Switch/Switch.vue";
 
 const collapseOpenedVal = ref(["a"]);
+
+const test = ref("right");
 
 const menuOptions: MenuOptions[] = [
   { key: 1, label: h("b", "this is the bold text") },
@@ -126,6 +129,18 @@ onMounted(() => {
     >
       <h1>Tigger</h1>
     </Dropdown>
+  </div>
+
+  <div class="switch">
+    <Switch
+      v-model="test"
+      active-value="right"
+      inactive-value="wrong"
+      active-text="ON"
+      inactive-text="OFF"
+      size="large"
+    />
+    <span>modelValue: {{ test }}</span>
   </div>
 </template>
 
