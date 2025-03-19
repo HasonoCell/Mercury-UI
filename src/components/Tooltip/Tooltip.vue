@@ -62,7 +62,6 @@ const closeDebounce = debounce(close, props.closeDelay);
 const closeFinal = () => {
   openDebounce.cancel();
   closeDebounce();
-  console.log("close");
 };
 
 const togglePopper = () => {
@@ -75,22 +74,23 @@ const togglePopper = () => {
 
 let events: Record<string, unknown> = reactive({});
 
-// let outerEvents: Record<string, unknown> = reactive({});
+let outerEvents: Record<string, unknown> = reactive({});
 
-if (!props.manual) {
-  useClickOutside(popperContainerNode, () => {
-    if (props.trigger === "click" && isOpen.value) {
-      close();
-    }
-  });
-}
+useClickOutside(popperContainerNode, () => {
+  if (props.trigger === "click" && isOpen.value) {
+    closeFinal();
+  }
+  if (isOpen.value) {
+    emits("click-outside", true);
+  }
+});
 
 const attachEvents = () => {
   if (props.trigger === "click") {
     events["click"] = togglePopper;
   } else {
     events["mouseenter"] = openFinal;
-    events["mouseleave"] = closeFinal;
+    outerEvents["mouseleave"] = closeFinal;
   }
 };
 
@@ -117,6 +117,7 @@ watch(
   (isManual) => {
     if (isManual) {
       events = {};
+      outerEvents = {};
     } else {
       attachEvents();
     }
@@ -128,6 +129,7 @@ watch(
   (newVal, oldVal) => {
     if (newVal !== oldVal) {
       events = {};
+      outerEvents = {};
       attachEvents();
     }
   }
@@ -148,7 +150,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="vk-tooltip" ref="popperContainerNode" v-on="events">
+  <div class="vk-tooltip" ref="popperContainerNode" v-on="outerEvents">
     <div class="vk-tooltip__trigger" ref="triggerNode" v-on="events">
       <slot></slot>
     </div>

@@ -1,3 +1,4 @@
+<!-- eslint-disable @typescript-eslint/no-explicit-any -->
 <script setup lang="ts">
 import { ref, h, onMounted } from "vue";
 import Button from "./components/Button/Button.vue";
@@ -10,6 +11,7 @@ import Dropdown from "./components/Dropdown/Dropdown.vue";
 import { createMessage } from "./components/Message/method";
 import type { MenuOptions } from "./components/Dropdown/types";
 import Switch from "./components/Switch/Switch.vue";
+import Select from "./components/Select/Select.vue";
 
 const collapseOpenedVal = ref(["a"]);
 
@@ -21,6 +23,20 @@ const menuOptions: MenuOptions[] = [
   { key: 3, label: "item3", divided: true },
   { key: 4, label: "item4" },
 ];
+
+const test2 = ref("2");
+
+const selectOptions = [
+  { label: "Hello", value: "1" },
+  { label: "World", value: "2" },
+  { label: "Vue", value: "3" },
+  { label: "React", value: "4" },
+  { label: "Index", value: "5" },
+];
+
+const customRender = (option: any) => {
+  return h("div", [h("b", option.label)]);
+};
 
 onMounted(() => {
   createMessage({
@@ -141,6 +157,17 @@ onMounted(() => {
       size="large"
     />
     <span>modelValue: {{ test }}</span>
+  </div>
+
+  <div class="select block">
+    <Select
+      v-model="test2"
+      placeholder="请选择"
+      :options="selectOptions"
+      clearable
+      filterable
+      :render-label="customRender"
+    ></Select>
   </div>
 </template>
 
