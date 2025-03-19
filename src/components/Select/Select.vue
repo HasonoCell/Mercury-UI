@@ -213,6 +213,13 @@ watch(
   }
 );
 
+watch(
+  () => props.modelValue,
+  (newVal) => {
+    initialOption!.value = newVal;
+  }
+);
+
 const NOOP = () => {};
 </script>
 

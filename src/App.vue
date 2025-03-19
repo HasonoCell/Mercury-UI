@@ -12,6 +12,7 @@ import { createMessage } from "./components/Message/method";
 import type { MenuOptions } from "./components/Dropdown/types";
 import Switch from "./components/Switch/Switch.vue";
 import Select from "./components/Select/Select.vue";
+import Basic from "./components/Form/Basic.vue";
 
 const collapseOpenedVal = ref(["a"]);
 
@@ -168,6 +169,10 @@ onMounted(() => {
       filterable
       :render-label="customRender"
     ></Select>
+  </div>
+
+  <div class="form">
+    <Basic></Basic>
   </div>
 </template>
 

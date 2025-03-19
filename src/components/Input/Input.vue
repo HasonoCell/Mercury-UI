@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { computed, ref, useAttrs, watch } from "vue";
+import { computed, inject, ref, useAttrs, watch } from "vue";
 import type { InputEmits, InputProps } from "./types";
 import type { Ref } from "vue";
 import Icon from "../Icon/Icon.vue";
 import { nextTick } from "vue";
+import { formItemContextKey } from "../Form/types";
 
 defineOptions({
   name: "VkInput",
@@ -13,6 +14,7 @@ defineOptions({
 const props = withDefaults(defineProps<InputProps>(), {
   type: "text",
   autocomplete: "off",
+  modelValue: "",
 });
 
 const emits = defineEmits<InputEmits>();
@@ -27,6 +29,12 @@ const passwordVisible = ref(false);
 
 const inputRef = ref() as Ref<HTMLElement>;
 
+const formItemContext = inject(formItemContextKey, undefined);
+
+const runValidation = (trigger?: string) => {
+  formItemContext?.validate?.(trigger).catch((e) => console.log(e.errors));
+};
+
 const showClear = computed(
   () => props.clearable && !props.disabled && !!innerValue.value && isFocus.value
 );
@@ -38,10 +46,12 @@ const showPasswordArea = computed(
 const handleInput = () => {
   emits("update:modelValue", innerValue.value);
   emits("input", innerValue.value);
+  runValidation("input");
 };
 
 const handleChange = () => {
   emits("change", innerValue.value);
+  runValidation("change");
 };
 
 const handleFocus = (event: FocusEvent) => {
@@ -57,6 +67,7 @@ const keepFocus = async () => {
 const handleBlur = (event: FocusEvent) => {
   isFocus.value = true;
   emits("blur", event);
+  runValidation("blur");
 };
 
 const clear = () => {

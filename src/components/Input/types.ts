@@ -1,7 +1,7 @@
 export interface InputProps {
   type?: "text" | "textarea" | "password";
   size?: "small" | "large";
-  modelValue: string;
+  modelValue?: string;
   clearable?: boolean;
   showPassword?: boolean;
   disabled?: boolean;
