@@ -49,7 +49,7 @@
     box-shadow: 0 0 0 1px var(--vk-color-danger) inset;
 }
 
-.vk-form-item.is-required > .vk-form-item__label::before {
+.vk-form-item.is-required>.vk-form-item__label::before {
     content: "*";
     color: var(--vk-color-danger);
     padding-right: 4px;

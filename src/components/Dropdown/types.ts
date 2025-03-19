@@ -19,6 +19,6 @@ export interface DropdownEmits {
 }
 
 export interface DropdownInstance {
-    show: () => void;
-    hide: () => void;
+  show: () => void;
+  hide: () => void;
 }

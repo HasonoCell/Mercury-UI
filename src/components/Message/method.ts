@@ -7,7 +7,7 @@ let seed = 1;
 
 const instances: MessageContext[] = shallowReactive([]);
 export const createMessage = (props: CreateMessageProps) => {
-  const { nextZIndex } = useZIndex()
+  const { nextZIndex } = useZIndex();
 
   const id = `message ${seed++}`;
 
@@ -72,7 +72,7 @@ export const getLastBottomOffset = (id: string) => {
 };
 
 export const closeAll = () => {
-  instances.forEach(instance => {
-    instance.destory()
-  })
-}
+  instances.forEach((instance) => {
+    instance.destory();
+  });
+};

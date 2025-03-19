@@ -5,6 +5,10 @@ import Tooltip from "../Tooltip/Tooltip.vue";
 import type { TooltipInstance } from "../Tooltip/types";
 import RenderVnode from "../Common/RenderVnode";
 
+defineOptions({
+  name: "VkDropdown",
+});
+
 const props = withDefaults(defineProps<DropdownProps>(), {
   hideAfterClick: true,
 });
@@ -12,11 +16,6 @@ const props = withDefaults(defineProps<DropdownProps>(), {
 const emits = defineEmits<DropdownEmits>();
 
 const tooltipRef = ref() as Ref<TooltipInstance>;
-
-defineExpose<DropdownInstance>({
-  show: tooltipRef.value?.show,
-  hide: tooltipRef.value?.hide,
-});
 
 const visibleChange = (e: boolean) => {
   emits("visible-change", e);
@@ -32,9 +31,10 @@ const itemClick = (e: MenuOptions) => {
   }
 };
 
-defineOptions({
-  name: "VkDropdown"
-})
+defineExpose<DropdownInstance>({
+  show: tooltipRef.value?.show,
+  hide: tooltipRef.value?.hide,
+});
 </script>
 
 <template>

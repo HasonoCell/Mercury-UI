@@ -4,7 +4,7 @@ import RenderVnode from "../Common/RenderVnode";
 import Icon from "../Icon/Icon.vue";
 import { computed, onMounted, ref } from "vue";
 import { getLastBottomOffset } from "./method";
-import useEventListener from "../../hooks/useEventListener"
+import useEventListener from "../../hooks/useEventListener";
 
 const props = withDefaults(defineProps<MessageProps>(), {
   duration: 3000,
@@ -63,11 +63,6 @@ onMounted(async () => {
   startTimer();
 });
 
-defineExpose({
-  bottomOffset,
-  visible,
-});
-
 const destoryComponent = () => {
   props.onDestory();
 };
@@ -75,6 +70,11 @@ const destoryComponent = () => {
 const updateHeight = () => {
   height.value = messageRef.value!.getBoundingClientRect().height;
 };
+
+defineExpose({
+  bottomOffset,
+  visible,
+});
 </script>
 
 <template>

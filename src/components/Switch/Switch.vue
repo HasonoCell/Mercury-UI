@@ -2,6 +2,11 @@
 import { computed, onMounted, ref, watch } from "vue";
 import type { SwitchEmits, SwitchProps } from "./types";
 
+defineOptions({
+  name: "VkSwitch",
+  inheritAttrs: false,
+});
+
 const props = withDefaults(defineProps<SwitchProps>(), {
   activeValue: true,
   inactiveValue: false,
@@ -37,11 +42,6 @@ watch(
     innerValue.value = newVal;
   }
 );
-
-defineOptions({
-  name: "VkSwitch",
-  inheritAttrs: false,
-});
 </script>
 
 <template>

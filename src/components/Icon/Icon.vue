@@ -6,7 +6,7 @@ import { computed } from "vue";
 
 defineOptions({
   name: "VkIcon",
-  inheritAttrs: false, // 与透传有关的知识点
+  inheritAttrs: false,
 });
 
 // 这里对 FontAwesomeIconProps 参数列表要做出自定义调整
@@ -31,7 +31,7 @@ const customStyles = computed(() => {
       [`vk-icon--${type}`]: type,
     }"
     :style="customStyles"
-    v-bind="$attrs" 
+    v-bind="$attrs"
   >
     <FontAwesomeIcon v-bind="filteredProps"></FontAwesomeIcon>
   </i>

@@ -1,5 +1,5 @@
 import { type Ref, type InjectionKey } from "vue";
-export type NameType = string | number
+export type NameType = string | number;
 
 export interface CollapseItemProps {
   name: NameType;
@@ -8,18 +8,18 @@ export interface CollapseItemProps {
 }
 
 export interface CollapseContext {
-  activeName: Ref<NameType[]>
-  handleItemClick: (name: NameType) => void 
+  activeName: Ref<NameType[]>;
+  handleItemClick: (name: NameType) => void;
 }
 
 export interface CollapseProps {
-  modelValue: NameType[],
-  accordion?: boolean,
+  modelValue: NameType[];
+  accordion?: boolean;
 }
 
 export interface CollapseEmits {
-  (e: 'update:modelValue', values: NameType[]): void
-  (e: 'change', values: NameType[]): void
+  (e: "update:modelValue", values: NameType[]): void;
+  (e: "change", values: NameType[]): void;
 }
 
-export const collapseContextKey: InjectionKey<CollapseContext> = Symbol('collapseContextKey')
+export const collapseContextKey: InjectionKey<CollapseContext> = Symbol("collapseContextKey");

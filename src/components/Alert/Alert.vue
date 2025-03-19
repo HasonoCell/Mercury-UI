@@ -21,8 +21,8 @@ defineProps<AlertProps>();
 const emits = defineEmits<AlertEmits>();
 
 defineExpose<AlertInstance>({
-  close: close
-})
+  close: close,
+});
 </script>
 
 <template>

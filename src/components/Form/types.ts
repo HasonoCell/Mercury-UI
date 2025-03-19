@@ -24,21 +24,10 @@ export interface FormContext extends FormProps {
 }
 
 export interface FormItemContext {
-  validate: (trigger?: string) => Promise<any>;
   prop: string;
+  validate: (trigger?: string) => Promise<any>;
   resetField(): void;
   clearValidate(): void;
-}
-
-export interface FormValidateFailure {
-  errors: ValidateError[] | null;
-  fields: ValidateFieldsError;
-}
-
-export interface FormInstance {
-  validate: () => Promise<any>;
-  clearValidate: () => void;
-  resetFields: () => void;
 }
 
 export interface ValidateStatusProp {
@@ -52,6 +41,17 @@ export interface FormItemInstance {
   validate: (trigger?: string) => Promise<any>;
   resetField(): void;
   clearValidate(): void;
+}
+
+export interface FormValidateFailure {
+  errors: ValidateError[] | null;
+  fields: ValidateFieldsError;
+}
+
+export interface FormInstance {
+  validate: () => Promise<any>;
+  clearValidate: () => void;
+  resetFields: () => void;
 }
 
 export const formContextKey: InjectionKey<FormContext> = Symbol("formContextKey");

@@ -41,7 +41,7 @@
   font-size: var(--vk-font-size-base);
   border-radius: var(--vk-border-radius-base);
 
-  & + & {
+  &+& {
     margin-left: 12px;
   }
 

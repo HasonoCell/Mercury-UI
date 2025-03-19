@@ -5,6 +5,10 @@ import { createPopper, type Instance } from "@popperjs/core";
 import useClickOutside from "../../hooks/useClickOutside";
 import { debounce } from "lodash-es";
 
+defineOptions({
+  name: "VkTooltip",
+});
+
 const props = withDefaults(defineProps<TooltipProps>(), {
   placement: "bottom",
   trigger: "hover",
@@ -24,6 +28,10 @@ const popperNode = ref<HTMLElement>();
 const triggerNode = ref<HTMLElement>();
 
 let popperInstance: null | Instance = null;
+
+let events: Record<string, unknown> = reactive({});
+
+let outerEvents: Record<string, unknown> = reactive({});
 
 const popperOptions = computed(() => {
   return {
@@ -71,10 +79,6 @@ const togglePopper = () => {
     openFinal();
   }
 };
-
-let events: Record<string, unknown> = reactive({});
-
-let outerEvents: Record<string, unknown> = reactive({});
 
 useClickOutside(popperContainerNode, () => {
   if (props.trigger === "click" && isOpen.value) {
@@ -138,10 +142,6 @@ watch(
 defineExpose<TooltipInstance>({
   show: openFinal,
   hide: closeFinal,
-});
-
-defineOptions({
-  name: "VkTooltip",
 });
 
 onUnmounted(() => {
